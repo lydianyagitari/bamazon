@@ -27,7 +27,7 @@ connection.connect(function(err){
 
 //--Beginning of the Inquirer
 
-function runBamazon() {}
+function runBamazon() {};
 
 
 
@@ -40,7 +40,7 @@ function displayInventory(){
 		
 
 		for(i=0;i<res.length;i++){
-			console.log('Item ID:' + res[i].id + ' Product Name: ' + res[i].ProductName + ' Price: ' + '$' + res[i].Price + '(Quantity left: ' + res[i].StockQuantity + ')')
+			console.log('Item ID:' + res[i].item_id + ' Product Name: ' + res[i].product_name +  'Department_name: ' + res[i].department_name + ' Price: ' + '$' + res[i].price +  ')')
 		}
 		
 		userExperience();
@@ -52,23 +52,23 @@ function userExperience(){
 	inquirer.prompt([{
 		name: 'selectId',
 		message: 'Please enter the ID of the product you wish to purchase',
-		validate: function(value){
-			var valid = value.match(/^[0-9]+$/)
-			if(valid){
-				return true
-			}
-				return 'Please enter a valid Product ID'
-		}
+		// validate: function(value){
+		// 	var valid = value.match(/^[0-9]+$/)
+		// 	if(valid){
+		// 		return true
+		// 	}
+		// 		return 'Please enter a valid Product ID'
+		// }
 	},{
 		name:'selectQuantity',
 		message: 'How many of this product would you like to order?',
-		validate: function(value){
-			var valid = value.match(/^[0-9]+$/)
-			if(valid){
-				return true
-			}
-				return 'Please enter a numerical value'
-		}
+		// validate: function(value){
+		// 	var valid = value.match(/^[0-9]+$/)
+		// 	if(valid){
+		// 		return true
+		// 	}
+		// 		return 'Please enter a numerical value'
+		// }
 	}]).then(function(answer){
 	connection.query('SELECT * FROM products WHERE id = ?', [answer.selectId], function(err, res){
 		if(answer.selectQuantity > res[0].StockQuantity){
@@ -109,7 +109,7 @@ function makePurchase(){
 			userExperience();
 		}
 		else{
-			console.log('Thank you for shopping at Bamazon!');
+			console.log('Thank you for shopping at Ndogogio Bamazon!');
 			connection.end();
 		}
 	})
