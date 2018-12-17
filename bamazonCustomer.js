@@ -48,11 +48,11 @@ function customerPrompt() {
     inquirer.prompt([{
         name: 'selectId',
         message: 'Please enter the ID of the product you wish to purchase'
-       
+
     }, {
         name: 'specifyQuantity',
         message: 'What would be the quantity of your order?'
-     
+
     }]).then(function(customer) {
         connection.query('SELECT * FROM products WHERE id = ?', [customer.selectId], function(err, res) {
             if (customer.specifyQuantity > res[0].stock_quantity) {
