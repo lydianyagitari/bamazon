@@ -48,7 +48,7 @@ function customerPrompt() {
     inquirer.prompt([{
         name: 'selectId',
         message: 'Please enter the ID of the product you wish to purchase'
-//Prompts the user to select quantity to buy
+            //Prompts the user to select quantity to buy
     }, {
         name: 'specify_quantity',
         message: 'What would be the quantity of your order?'
