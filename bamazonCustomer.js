@@ -24,11 +24,11 @@ connection.connect(function(err) {
     runBamazon();
 });
 
-//--Beginning of the Inquirer
+//--starts to run bamazon
 
 function runBamazon() {};
 
-//Displays all items available in store and then calls the place order function
+//Displays all items available in store's product inventory
 function fetchInventory() {
     connection.query('SELECT * FROM products', function(err, res) {
         if (err) throw err;
@@ -43,31 +43,31 @@ function fetchInventory() {
     })
 }
 
-//Prompts the user to place an order, fulfills the order, and then calls the new order function
+//Prompts the user to select item ID 
 function customerPrompt() {
     inquirer.prompt([{
         name: 'selectId',
         message: 'Please enter the ID of the product you wish to purchase'
-
+//Prompts the user to select quantity to buy
     }, {
-        name: 'specifyQuantity',
+        name: 'specify_quantity',
         message: 'What would be the quantity of your order?'
 
     }]).then(function(customer) {
         connection.query('SELECT * FROM products WHERE id = ?', [customer.selectId], function(err, res) {
-            if (customer.specifyQuantity > res[0].stock_quantity) {
+            if (customer.specify_quantity > res[0].stock_quantity) {
                 console.log('Insufficient quantity! Consider a different item or quantity');
 
                 doPurchase();
             } else {
-                amountToPay = res[0].Price * customer.specifyQuantity;
+                amountToPay = res[0].Price * customer.specify_quantity;
                 thisDepartment = res[0].department_name;
                 console.log('Thanks for your order');
                 console.log('\nYour Total today was=' + amountToPay);
 
-                //update products table
+                //update  stock quantity in the products table
                 connection.query('UPDATE products SET ? Where ?', [{
-                    StockQuantity: res[0].stock_quantity - customer.specifyQuantity
+                    StockQuantity: res[0].stock_quantity - customer.specify_quantity
                 }, {
                     id: customer.selectId
                 }], function(err, res) {});
@@ -98,7 +98,7 @@ function doPurchase() {
 
 //functions to push the sales to the executive table
 function tellDepartment() {
-    connection.query('SELECT * FROM departments WHERE DepartmentName = ?', [thisDepartment], function(err, res) {
+    connection.query('SELECT * FROM departments WHERE department_name = ?', [thisDepartment], function(err, res) {
         update_sales = res[0].TotalSales + amountToPay;
         updateDeptTable();
     })
@@ -111,6 +111,6 @@ function updateDeptTable() {
         DepartmentName: thisDepartment
     }], function(err, res) {});
 };
-//Call the original function (all other functions are called within this function)
+//Call the inventoty function)
 
 fetchInventory();
