@@ -111,6 +111,6 @@ function updateDeptTable() {
         DepartmentName: thisDepartment
     }], function(err, res) {});
 };
-//Call the inventoty function)
+//Call the inventoty function
 
 fetchInventory();
