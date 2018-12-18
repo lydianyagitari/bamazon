@@ -1,4 +1,7 @@
 // node module dependencies for this CLI
+//https://www.npmjs.com/package/inquirer
+//https://www.npmjs.com/package/cli-table
+//https://www.npmjs.com/package/mysql
 
 var inquirer = require('inquirer');
 var mysql = require("mysql");
@@ -36,7 +39,7 @@ function fetchInventory() {
         console.log('Ndogogio Stores your Home Store!!!');
 
         for (i = 0; i < res.length; i++) {
-            console.log('Item ID:' + res[i].item_id + ' Product Name: ' + res[i].product_name + 'Department_name: ' + res[i].department_name + ' Price: ' + '$' + res[i].price + ')')
+            console.log('Item ID:' + res[i].item_id + ' Product Name: ' + res[i].product_name + 'Department_name: ' + res[i].department_name + ' Price: ' + '$' + res[i].price + 'Stock Quantity:' + res[i].stock_quantity)
         }
 
         customerPrompt();
