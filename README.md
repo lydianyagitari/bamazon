@@ -4,9 +4,11 @@
 
 ## Overview
 
-In this activity, you'll be creating an Amazon-like storefront with the MySQL skills you learned this unit. The app will take in orders from customers and deplete stock from the store's inventory. As a bonus task, you can program your app to track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.
+You'll be creating an Amazon-like storefront with the MySQL skills you learned this unit. 
+The app will take in orders from customers and deplete stock from the store's inventory. 
+Further advanced, you can program your app to track product sales across your store's departments and then provide a summary of the highest-grossing departments in the store.
 
-Make sure you save and require the MySQL and Inquirer npm packages in your homework files--your app will need them for data input and storage.
+Save and require the MySQL and Inquirer npm packages in your  files (your app will need them for data input and storage).
 
 
 ## Instructions
@@ -72,4 +74,15 @@ Make sure you save and require the MySQL and Inquirer npm packages in your homew
   * If a manager selects `Add New Product`, it should allow the manager to add a completely new product to the store.
 
 - - -
+Authors Lydia Nyagitari
+Tech Used 
+Node.js
+
+* Prerequisites
+*npm i require -https://www.npmjs.com/package/require
+*npm i cli-table -https://www.npmjs.com/package/cli-table
+*npm i mysql -https://www.npmjs.com/package/mysql
+*Node.js - Download the latest version of Node https://nodejs.org/en/ 
+* Built With VS Text Editor -
+* Authors - Lydia Nyagitari
 
