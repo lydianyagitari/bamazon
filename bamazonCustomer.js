@@ -31,7 +31,8 @@ connection.connect(function(err) {
 
 function runBamazon() {};
 
-//Displays all items available in store's product inventory
+//function starts by showing the buyer all items available in store's products inventory
+//this app loops around the inventory function
 function fetchInventory() {
     connection.query('SELECT * FROM products', function(err, res) {
         if (err) throw err;
@@ -46,22 +47,25 @@ function fetchInventory() {
     })
 }
 
-//Prompts the user to select item ID 
+//Prompts the user to select item ID of a product from the inventory
 function customerPrompt() {
     inquirer.prompt([{
         name: 'selectId',
         message: 'Please enter the ID of the product you wish to purchase'
-            //Prompts the user to select quantity to buy
+     //Prompts the user to select quantity to buy
     }, {
         name: 'specify_quantity',
         message: 'What would be the quantity of your order?'
 
     }]).then(function(customer) {
         connection.query('SELECT * FROM products WHERE id = ?', [customer.selectId], function(err, res) {
+            //If stock level is lower than amt cust wants to purchase...print out Insufficient quantity
             if (customer.specify_quantity > res[0].stock_quantity) {
                 console.log('Insufficient quantity! Consider a different item or quantity');
-
+//doPurchase will take customer to a prompt that asks them to do a different order 
                 doPurchase();
+                
+                //if amt cust wants to buy is not low in stock...allow the cust to purchase and then print the total +amount to pay
             } else {
                 amountToPay = res[0].Price * customer.specify_quantity;
                 thisDepartment = res[0].department_name;
@@ -99,14 +103,15 @@ function doPurchase() {
     })
 };
 
-//functions to push the sales to the executive table
+//functions to push the sales to the executive table..on the third level of this app
 function tellDepartment() {
     connection.query('SELECT * FROM departments WHERE department_name = ?', [thisDepartment], function(err, res) {
         update_sales = res[0].TotalSales + amountToPay;
+        //invokes a function that updates the stock after a purchase
         updateDeptTable();
     })
 };
-
+//function that does an update after a purchase
 function updateDeptTable() {
     connection.query('UPDATE departments SET ? WHERE ?', [{
         TotalSales: update_sales
@@ -114,6 +119,6 @@ function updateDeptTable() {
         DepartmentName: thisDepartment
     }], function(err, res) {});
 };
-//Call the inventoty function
-
+//this app loops around the inventory function
+//after a sale/purchase invoke this function 
 fetchInventory();
