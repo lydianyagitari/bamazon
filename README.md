@@ -78,11 +78,11 @@ Authors Lydia Nyagitari
 Tech Used 
 Node.js
 
-* Prerequisites
-*npm i require -https://www.npmjs.com/package/require
-*npm i cli-table -https://www.npmjs.com/package/cli-table
-*npm i mysql -https://www.npmjs.com/package/mysql
-*Node.js - Download the latest version of Node https://nodejs.org/en/ 
+** Prerequisites
+* npm i require -https://www.npmjs.com/package/require
+* npm i cli-table -https://www.npmjs.com/package/cli-table
+* npm i mysql -https://www.npmjs.com/package/mysql
+* Node.js - Download the latest version of Node https://nodejs.org/en/ 
 * Built With VS Text Editor -
 * Authors - Lydia Nyagitari
 
