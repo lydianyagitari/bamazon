@@ -107,7 +107,7 @@ function doPurchase() {
 function tellDepartment() {
     connection.query('SELECT * FROM departments WHERE department_name = ?', [thisDepartment], function(err, res) {
         update_sales = res[0].TotalSales + amountToPay;
-        //invokes a function that updates the stock after a purchase
+        //invokes a function that updates stock after a purchase
         updateDeptTable();
     })
 };
