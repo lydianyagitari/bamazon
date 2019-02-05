@@ -1,6 +1,9 @@
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Keroka96';
 CREATE DATABASE if not exists bamazon;
 
 USE bamazon;
+
 
 CREATE TABLE if not exists products(
    item_id INT NOT NULL ,
